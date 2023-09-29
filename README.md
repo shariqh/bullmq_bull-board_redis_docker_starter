@@ -1,6 +1,6 @@
 # Architecture
 
-![Alt text](architecture_diagram.png)
+![Architecture Diagram](architecture_diagram.png)
 
 ## Why Dockerize?
 - Can manually scale consumers based on workload and available system resources
