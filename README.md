@@ -73,10 +73,12 @@ If you were to utilize BullMQ for a REST based application, you would spin up mu
 
 ### Worker
 Much easier here - we can scale the app in two ways (and combine the two for ULTIMATE speed):
-1. The ![built in concurrency variable](concurrency_var.png) will allow us to take full advantage of a single worker's capacity
+1. The built in concurrency variable will allow us to take full advantage of a single worker's capacity - see conde snippet below
 2. Manully create more docker containers for the worker. How? Easy... Get comfy with docker compose and try a `docker compose up --scale worker=5`
 
-![FASTER!](faster.png)
+![](concurrency_var.png)
+
+![](faster.png)
 
 # Security
 By default, the app stores data in clear text - namely in Redis. Avoid storing sensitive date in the jobs and intead retrieve the data securely at the time a job is being processed. If you must store confidential data, please encrypt the sensitive parts.
