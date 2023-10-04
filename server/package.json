@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "BullMQ server to ingest data, define queues and their parameters, and write to said queues",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Shariq Hirani",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^4.12.0",
+    "@bull-board/api": "^5.8.4",
+    "@bull-board/express": "^5.8.4",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/bull": "^4.10.0"
+  }
+}

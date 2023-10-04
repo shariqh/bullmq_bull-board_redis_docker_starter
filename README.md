@@ -22,7 +22,7 @@ Check out [this guide](https://docs.bullmq.io/guide/going-to-production). We ena
 Currently, the app has the following settings:
 
 #### Redis Database
-The snapshot will be replicated in the host machine's `redis/data` folder
+The snapshot will be replicated in the host machine's `redis` folder
 
 * After 3600 seconds (an hour) if at least 1 change was performed
 * After 300 seconds (5 minutes) if at least 100 changes were performed
@@ -49,6 +49,11 @@ Assuming you have Docker Desktop installed, it will have installed Docker Compos
 ## Redis
 Nothing to do here unless you're deploying to prod - then please see [this post here](https://docs.bullmq.io/guide/going-to-production).
 
+I changed the following security settings in `redis.conf`
+
+`bind 127.0.0.1 -::1` -> `# bind 127.0.0.1 -::1`
+`protected-mode yes` -> `protected-mode no`
+
 ### Examples On How To Run The App
 `docker compose up`
 `docker compose up -d`
@@ -73,7 +78,7 @@ If you were to utilize BullMQ for a REST based application, you would spin up mu
 
 ### Worker
 Much easier here - we can scale the app in two ways (and combine the two for ULTIMATE speed):
-1. The built in concurrency variable will allow us to take full advantage of a single worker's capacity - see conde snippet below
+1. The built in concurrency variable will allow us to take full advantage of a single worker's capacity - see code snippet below
 2. Manully create more docker containers for the worker. How? Easy... Get comfy with docker compose and try a `docker compose up --scale worker=5`
 
 ![](concurrency_var.png)

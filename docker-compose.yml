@@ -1,0 +1,23 @@
+services:
+
+  redis:
+    image: 'redis:alpine'
+    entrypoint: redis-server redis.conf
+    volumes:
+      - ./redis:/data
+    ports:
+      - '6379:6379'
+
+  server:
+    restart: on-failure
+    build: ./server
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+    
+  worker:
+    restart: on-failure
+    build: ./worker
+    depends_on:
+      - redis

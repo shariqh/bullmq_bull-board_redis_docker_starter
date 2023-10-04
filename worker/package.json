@@ -1,0 +1,19 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "Consume BullMQ messages and process as needed",
+  "main": "worker.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node worker.js"
+  },
+  "author": "Shariq Hirani",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^4.12.0"
+  },  
+  "devDependencies": {
+    "@types/bull": "^4.10.0"
+  }
+}
