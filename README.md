@@ -14,7 +14,7 @@
 - App idles at only 100mb of memory assuming an empty Redis cache and a single server + worker
 
 ## Persistence
-Check out [this guide](https://docs.bullmq.io/guide/going-to-production). We enable the follow two Redis settings:
+Check out [this guide](https://docs.bullmq.io/guide/going-to-production). We enable the follow two Redis settings in `redis.conf`:
 1. [Append-only-file + RDB](https://redis.io/docs/management/persistence/)
 2. `maxmemory` set to `noeviction`
 
@@ -35,8 +35,6 @@ The AOF will be replicated in the host machine's `redis/appendonlydir` folder
 
 * `appendonly yes`
 
-Note that we did have to make this change to `redis.conf`.
-
 # How To Use This App
 
 ## Running The App
@@ -52,13 +50,18 @@ Nothing to do here unless you're deploying to prod - then please see [this post 
 I changed the following security settings in `redis.conf`
 
 `bind 127.0.0.1 -::1` -> `# bind 127.0.0.1 -::1`
+
 `protected-mode yes` -> `protected-mode no`
 
 ### Examples On How To Run The App
 `docker compose up`
+
 `docker compose up -d`
+
 `docker compose up --build`
+
 `docker compose up --build --scale worker=2`
+
 `docker compose up -d --build --scale worker=2`
 
 ## Delayed Jobs
@@ -86,4 +89,11 @@ Much easier here - we can scale the app in two ways (and combine the two for ULT
 ![](faster.png)
 
 # Security
-By default, the app stores data in clear text - namely in Redis. Avoid storing sensitive date in the jobs and intead retrieve the data securely at the time a job is being processed. If you must store confidential data, please encrypt the sensitive parts.
+## Redis
+I changed the following security settings in `redis.conf`
+
+`bind 127.0.0.1 -::1` -> `# bind 127.0.0.1 -::1`
+
+`protected-mode yes` -> `protected-mode no`
+
+Also, by default, the app stores data in clear text - namely in Redis. Avoid storing sensitive date in the jobs and intead retrieve the data securely at the time a job is being processed. If you must store confidential data, please encrypt the sensitive parts.
