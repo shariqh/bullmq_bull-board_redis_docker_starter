@@ -11,6 +11,8 @@ services:
   server:
     restart: on-failure
     build: ./server
+    volumes:
+      - ./server/data:/usr/src/app/data
     ports:
       - '3000:3000'
     depends_on:
